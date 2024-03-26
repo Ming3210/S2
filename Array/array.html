@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="search" placeholder="Nhập tên sp">
+    <button id="btn">Mua</button>
+    <script>
+        /*
+        Array : Mảng, thuộc kiểu dữ liệu phức tạp
+        I. Cách khai báo
+        Q/A : Có bao nhiêu cách khai báo ?
+        1. let arr = []
+        2. let sts = new Array()
+        Các phần tử trong mảng ngăn cách nhau bởi dấu phẩy, mảng có thể chứa nhiều kiểu dữ liệu vs nhau
+        mảng đánh từ index = 0
+        -kiểm tra độ dài mảng : tên mảng . length
+        -các cách duyệt mảng :
+        1. dùng for
+        2. for in : trả về chỉ mục
+        3. for of : trả về giá trị
+        ---------------------------
+        CRUD vs mảng
+        1.C
+        +unshift: thêm đầu
+        +push: thêm cuối
+        +splice: thêm vào vị trí bất kì
+        2.R
+        +for
+        +for-in
+        +for-of
+        3.U
+        +dùng splice
+        +update theo vị trí
+        4.D
+        +pop(): xóa phần tử cuối
+        +shift(): xóa phần tử đầu
+        +splice
+
+
+        *CÁC PHƯƠNG THWUSC LÀM VIỆC VỚI MẢNG :
+        1. pop() : Xóa cuối
+        2. push() : Thêm cuối
+        3. shift() : Xóa đầu
+        4. unshift() : Thêm đầu
+        5. join() : mảng -> chuỗi
+        6. split() : chuỗi -> mảng
+        7. concat() : gộp mảng
+        8. splice() : Thêm, sửa, xóa
+        9. slice() : Cắt, sao chép sang mảng khác
+        10. map() : 
+        11. filter() :
+        12. forEach() :
+        13. reduce() :
+        14. find() :
+        15. findIndex() :
+        16. startWidth() :
+        17. endWidth() :
+        18. charAt() :
+        19. indexOf() :
+        20. include() :
+        21. every() :
+        22. fill() :
+        23. copyWith() :
+        24. reverse() :
+        25. sort() :
+
+        */
+
+        // let sts=["hoa","hồng","minh","hùng"]
+        // for(let i = 0;i<sts.length;i++){
+        //     console.log(sts[i])
+        // }
+        // sts.splice(2 , 0,"nhung")
+        // for (let index in sts) {
+        //     console.log(sts[index]);
+        // }
+
+        // for (const index of sts) {
+        //     console.log(index);
+        // }
+
+        // let arr = [5,3,6,1,4]
+        // for(let i = 0; i < arr.length; i++){
+        //     for(let j = 0; j < arr.length-i; j++){
+        //         if(arr[j] > arr[j+1]){
+        //             let temp = arr[j+1]
+        //             arr[j+1] = arr[j]
+        //             arr[j] = temp
+        //         }
+        //     }
+        // }
+        // console.log(arr);
+
+
+
+
+        /*
+        PHÂN TÍCH BÀI TOÁN
+        1. Lấy giá trị ng dùng nhập vào
+        2. Ktra xem có có sản phẩm hay không
+        3. Nếu có thì thêm giỏ hàng gồm các thuộc tính
+        */
+
+        let product = [
+            {
+                id :1,
+                name : "iphone5",
+                stock:5,
+                price:5000
+            },
+            {
+                id :2,
+                name : "iphone6",
+                stock:7,
+                price:6000
+            },
+            {
+                id :3,
+                name : "iphone8",
+                stock:8,
+                price:8000
+            }  
+        ]
+        let input = document.getElementById("search")
+        let btn = document.getElementById("btn")
+        
+        let cart = []
+        btn.onclick = function(){
+            let flag = false
+            let prcart
+            for(let i = 0; i < product.length; i++){
+                if(input.value == product[i].name){
+                    flag = true
+                    prcart=product[i]
+                    break
+                }
+            }
+            if(!flag){
+                console.log("Không tìm thấy sản phẩm")
+            }else{
+                let check = false
+                for(let i = 0; i < cart.length; i++){
+                    if(input.value === cart[i].name){
+                        check = true
+                        break
+                    }
+                }
+                if(check){
+                    for(let j =0;j<cart.length;j++){
+                        cart[j].quantity++
+                    }
+                } else {
+                    prcart.quantity = 1
+                    cart.push(prcart)
+                }
+            }
+            console.log(cart);
+            
+        }
+
+    </script>
+</body>
+</html>
